@@ -9,10 +9,7 @@ ARM LPC1768
 LED
 ## SOFTWARE:
 KEIL MICRO VISION 4.0 IDE
-
 # PROCEDURE:
-
-
 ⮚	Open the Keil software and select the New uvision project from Project Menu as shown below.
 ⮚	Browse to your project folder and provide the project name and click on save.
 ⮚	Once the project is saved a new pop up “Select Device for Target” opens, Select the controller (NXP: LPC1768) from NXP (founded by philips) and click on OK.
@@ -42,16 +39,41 @@ Header:
 Delay.h, stdutils.h, gpioi.h
 
 # PIN DIAGRAM :
- 
+<img width="847" height="506" alt="image" src="https://github.com/user-attachments/assets/ca6403b7-d87a-4c69-bd23-c1d0dfa98615" />
 
 # CIRCUIT DIAGRAM:
- 
+ <img width="672" height="378" alt="image" src="https://github.com/user-attachments/assets/911e08c2-e01f-47f1-a5ba-54826c8add8a" />
  
 # PROGRAM:
-
-
+```
+#include <lpc17xx.h> 
+#include "delay.h" //User defined library which conatins the delay routines 
+#include "gpio.h" 
+#define LED P1_29 // Led is connected to P1.29 
+/* start the main program */ 
+int main() 
+{ 
+  SystemInit(); //Clock and PLL configuration 
+  GPIO_PinFunction(LED,PINSEL_FUNC_0); // Configure Pin for Gpio 
+  GPIO_PinDirection(LED,OUTPUT); // Configure the pin as OUTPUT 
+  GPIO_PinWrite(LED,LOW); 
+  while(1) 
+ { 
+   /* Turn On all the leds and wait for 100ms */ 
+   GPIO_PinWrite(LED,HIGH); // Make all the Port pin as high 
+   DELAY_ms(100); 
  
+   GPIO_PinWrite(LED,LOW); // Make all the Port pin as low 
+   DELAY_ms(100); 
+  } 
+}
+```
 # Output:
+<img width="900" height="651" alt="Screenshot 2025-11-11 141607" src="https://github.com/user-attachments/assets/5a6a92ae-5e1e-455f-a91d-a042a1a8f342" />
+
+
+
+
 
 
 
